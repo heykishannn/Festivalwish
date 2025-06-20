@@ -454,9 +454,13 @@
                 const userName = nameInput.value.trim() || (isEnglish ? 'Dear Friend' : 'प्रिय मित्र');
                 const pageUrl = window.location.href;
                 
-                const hindiMsg = `🚩 रथ यात्रा की शुभकामनाएं! 🙏\n\n${userName} की तरफ से आप सभी को रथ यात्रा की हार्दिक शुभकामनाएं! 🎉\n\n"जय जगन्नाथ! भगवान जगन्नाथ, बलभद्र और सुभद्रा जी की कृपा आप पर बनी रहे। इस पावन पर्व पर हम आपके लिए मंगल कामनाएं करते हैं।"\n\n${pageUrl}`;
+                const hindiMsg = `🚩 रथ यात्रा की शुभकामनाएं! 🙏\n\n${userName} से आप सभी को रथ यात्रा के पावन अवसर पर ढेरों मंगलकामनाएं! 🌸 🎉\n\n🌼 "जय जगन्नाथ!" 🌼  
+भगवान जगन्नाथ, बलभद्र और माता सुभद्रा की कृपा आप और आपके परिवार पर सदैव बनी रहे।  
+आपका जीवन सुख, समृद्धि और स्वास्थ्य से भरा रहे।\n\n${pageUrl}`;
                 
-                const englishMsg = `🚩 Rath Yatra Wishes! 🙏\n\nHeartfelt Rath Yatra wishes from ${userName}! 🎉\n\n"Jay Jagannath! May Lord Jagannath, Balabhadra and Subhadra bless you. On this auspicious occasion, we extend our best wishes to you."\n\n${pageUrl}`;
+                const englishMsg = `🚩 Rath Yatra Wishes! 🙏\n\nWarm wishes to all of you on the auspicious occasion of Rath Yatra from! 🌸" ${userName}! 🎉\n\n🌼 "Jai Jagannath!" 🌼
+May Lord Jagannath, Balabhadra, and Goddess Subhadra bless you and your family always.
+May your life be filled with happiness, prosperity, and good health."\n\n${pageUrl}`;
                 
                 return isEnglish ? englishMsg : hindiMsg;
             }
