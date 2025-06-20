@@ -599,7 +599,7 @@
             
             // Set up share buttons
             whatsappShare.onclick = function() {
-                window.open(`https://wa.me/?text=${encodeURIComponent(`${name} ने आपको रथ यात्रा की शुभकामनाएं भेजी हैं! ${currentUrl}`)}`);
+                window.open(`https://wa.me/?text=${encodeURIComponent(`${name} ने आपको शुभकामनाएं भेजी है!${currentUrl}`)}`);
             };
             
             facebookShare.onclick = function() {
@@ -620,7 +620,7 @@
                 description = `${name}'s Rath Yatra wishes: May Lord Jagannath bless you with happiness and prosperity.`;
             }
             
-            const shareText = `${name} ने आपको रथ यात्रा की शुभकामनाएं भेजी हैं!\n\n${description}\n\n${currentUrl}`;
+            const shareText = `${name} \n\n${sharedescription}\n\n${currentUrl}`;
             
             navigator.clipboard.writeText(shareText).then(() => {
                 confirmation.style.display = 'block';
