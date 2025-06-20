@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>रथ यात्रा की शुभकामनाएं</title>
+    <!-- Dynamic Title -->
+    <title id="dynamicTitle">रथ यात्रा की शुभकामनाएं</title>
+    
+    <!-- Open Graph Meta Tags for Sharing -->
+    <meta property="og:title" content="रथ यात्रा की हार्दिक शुभकामनाएं!" id="ogTitle">
+    <meta property="og:description" content="भगवान जगन्नाथ की कृपा आप पर बनी रहे।" id="ogDescription">
+    <meta property="og:image" content="https://www.example.com/share-image.jpg"> <!-- Add a default share image URL -->
+    <meta property="og:url" content="https://www.example.com"> <!-- Add your website URL -->
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Kalam:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -38,7 +47,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* GIF Container - Auto Size */
         .gif-container {
             width: auto;
             max-width: 100%;
@@ -172,20 +180,7 @@
             100% { opacity: 0; transform: translateY(-10px); }
         }
 
-        /* Admin link */
-        .admin-link {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #8e44ad;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
+        /* Admin link removed from here, assuming it's for the admin panel itself */
 
         /* Ad banner */
         .ad-banner {
@@ -283,25 +278,10 @@
         }
 
         /* Festival effects */
-        .flower {
+        .flower, .diya, .rangoli {
             position: absolute;
-            font-size: 24px;
-            animation: float linear infinite;
+            font-size: 24px; /* Base size, can be adjusted per emoji type */
             z-index: -1;
-        }
-
-        .diya {
-            position: absolute;
-            font-size: 24px;
-            animation: flicker 2s infinite alternate;
-            z-index: -1;
-        }
-
-        .rangoli {
-            position: absolute;
-            font-size: 30px;
-            z-index: -1;
-            opacity: 0.7;
         }
 
         @keyframes float {
@@ -330,10 +310,11 @@
     </style>
 </head>
 <body>
-<script type='text/javascript' src='//pl26859944.profitableratecpm.com/0d/45/39/0d4539f09727c641fc77330a16feaa38.js'></script>
-    <!-- Admin link -->
+    <!-- Ads Script -->
+    <script type='text/javascript' src='//pl26859944.profitableratecpm.com/0d/45/39/0d4539f09727c641fc77330a16feaa38.js'></script>
 
     <!-- Background music -->
+    <!-- The music will be controlled by JavaScript -->
     <audio id="festivalMusic" loop>
         <source src="festival.mp3" type="audio/mpeg">
     </audio>
@@ -359,9 +340,11 @@
             <img id="festivalGif" src="festival.gif" alt="Rath Yatra Celebration">
         </div>
         
+        <!-- Dynamic Title -->
         <h1 id="pageTitle">रथ यात्रा की हार्दिक शुभकामनाएं 🙏🎉</h1>
         
         <div class="wish-container">
+            <!-- Dynamic Wishes -->
             <div class="wish-text" id="hindiWish">
                 "जय जगन्नाथ! 🙏 भगवान जगन्नाथ, बलभद्र और सुभद्रा जी की कृपा आप पर बनी रहे। ✨<br><br>
                 इस पावन रथ यात्रा पर्व पर हम आपके लिए मंगल कामनाएं करते हैं। 🎊<br><br>
@@ -372,6 +355,7 @@
                 On this auspicious occasion of Rath Yatra, we extend our heartfelt wishes to you. 🎊<br><br>
                 May God fill your life with happiness, peace and prosperity. 🌟🚩"
             </div>
+            <!-- Note: If you add more wishes, you'll need to adjust the JS for them -->
             <button class="translate-btn" id="translateBtn">Translate to English</button>
         </div>
         
@@ -431,7 +415,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <script>
-        // Initialize IndexedDB
+        // IndexedDB Initialization and Functions (same as before)
         let db;
         const dbName = "RathYatraDB";
         const storeName = "PageSettings";
@@ -439,17 +423,8 @@
         function initDB() {
             return new Promise((resolve, reject) => {
                 const request = indexedDB.open(dbName, 1);
-                
-                request.onerror = function(event) {
-                    console.error("IndexedDB error:", event.target.error);
-                    reject("Database error");
-                };
-                
-                request.onsuccess = function(event) {
-                    db = event.target.result;
-                    resolve(db);
-                };
-                
+                request.onerror = function(event) { console.error("IndexedDB error:", event.target.error); reject("Database error"); };
+                request.onsuccess = function(event) { db = event.target.result; resolve(db); };
                 request.onupgradeneeded = function(event) {
                     const db = event.target.result;
                     if (!db.objectStoreNames.contains(storeName)) {
@@ -464,14 +439,8 @@
                 const transaction = db.transaction([storeName], "readonly");
                 const store = transaction.objectStore(storeName);
                 const request = store.get(key);
-                
-                request.onsuccess = function() {
-                    resolve(request.result ? request.result.value : null);
-                };
-                
-                request.onerror = function(event) {
-                    reject(event.target.error);
-                };
+                request.onsuccess = function() { resolve(request.result ? request.result.value : null); };
+                request.onerror = function(event) { reject(event.target.error); };
             });
         }
         
@@ -480,221 +449,98 @@
                 const transaction = db.transaction([storeName], "readwrite");
                 const store = transaction.objectStore(storeName);
                 const request = store.put({ id: key, value: value });
-                
-                request.onsuccess = function() {
-                    resolve();
-                };
-                
-                request.onerror = function(event) {
-                    reject(event.target.error);
-                };
+                request.onsuccess = function() { resolve(); };
+                request.onerror = function(event) { reject(event.target.error); };
             });
         }
         
-        // Load settings from IndexedDB
+        // --- NEW LOGIC FOR IMMEDIATE PLAYBACK AND SHAREABLE TEXT ---
+
+        const music = document.getElementById("festivalMusic");
+        const nameInput = document.getElementById("nameInput");
+        const confirmation = document.getElementById("confirmation");
+        const hindiWishDiv = document.getElementById("hindiWish");
+        const englishWishDiv = document.getElementById("englishWish");
+        const shareModal = document.getElementById("shareModal");
+        const closeModal = document.getElementById("closeModal");
+        const whatsappShare = document.getElementById("whatsappShare");
+        const facebookShare = document.getElementById("facebookShare");
+        const instagramShare = document.getElementById("instagramShare");
+        const shareBtn = document.getElementById("shareBtn");
+        const copyBtn = document.getElementById("copyBtn");
+        const translateBtn = document.getElementById("translateBtn");
+
+        let isEnglish = false; // State for translation button
+
+        // Function to play music
+        function playMusic() {
+            music.volume = 0.3; // Set volume
+            const playPromise = music.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay started!
+                    console.log("Music started playing.");
+                })
+                .catch(error => {
+                    // Autoplay was prevented. Show a UI element to let the user manually start playing.
+                    console.log("Autoplay prevented by browser.");
+                    // You might want to show a play button or a message here if autoplay fails.
+                    // For this example, we assume it will work or the user will interact.
+                });
+            }
+        }
+
+        // Function to stop music
+        function stopMusic() {
+            music.pause();
+            music.currentTime = 0; // Reset to beginning
+            console.log("Music stopped.");
+        }
+        
+        // --- Page Visibility API to control music ---
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                // If the page becomes visible again, play music if it was playing before
+                // Or if we want it to resume after being hidden.
+                // For simplicity here, we'll try to play it if music is supposed to be on.
+                // However, the core requirement is to play on load.
+                // This handler is more for when user switches tabs and comes back.
+                // We are relying on the initial load for 'instant' play.
+            } else {
+                // Page is hidden (user switched tabs or minimized window)
+                stopMusic();
+            }
+        });
+
+        // --- Load Settings and Update UI ---
         async function loadSettings() {
             try {
                 await initDB();
                 
-                const settings = {
-                    title: await getSetting("title"),
-                    hindiWish: await getSetting("hindiWish"),
-                    englishWish: await getSetting("englishWish"),
-                    gifUrl: await getSetting("gifUrl"),
-                    musicUrl: await getSetting("musicUrl"),
-                    emojis: await getSetting("emojis")
-                };
+                // Load general settings
+                const title = await getSetting("title");
+                const hindiWish = await getSetting("hindiWish");
+                const englishWish = await getSetting("englishWish");
+                const gifUrl = await getSetting("gifUrl");
+                const musicUrl = await getSetting("musicUrl");
                 
-                if (settings.title) document.getElementById("pageTitle").textContent = settings.title;
-                if (settings.hindiWish) document.getElementById("hindiWish").innerHTML = settings.hindiWish;
-                if (settings.englishWish) document.getElementById("englishWish").innerHTML = settings.englishWish;
-                if (settings.gifUrl) document.getElementById("festivalGif").src = settings.gifUrl;
-                if (settings.musicUrl) document.getElementById("festivalMusic").src = settings.musicUrl;
-                
-                // Update emojis if available
-                if (settings.emojis) {
-                    const flowers = document.querySelectorAll(".flower");
-                    const diyas = document.querySelectorAll(".diya");
-                    const rangolis = document.querySelectorAll(".rangoli");
-                    
-                    if (flowers.length > 0 && settings.emojis.flowers) {
-                        flowers.forEach((flower, index) => {
-                            if (settings.emojis.flowers[index]) {
-                                flower.textContent = settings.emojis.flowers[index];
-                            }
-                        });
-                    }
-                    
-                    if (diyas.length > 0 && settings.emojis.diyas) {
-                        diyas.forEach((diya, index) => {
-                            if (settings.emojis.diyas[index]) {
-                                diya.textContent = settings.emojis.diyas[index];
-                            }
-                        });
-                    }
-                    
-                    if (rangolis.length > 0 && settings.emojis.rangolis) {
-                        rangolis.forEach((rangoli, index) => {
-                            if (settings.emojis.rangolis[index]) {
-                                rangoli.textContent = settings.emojis.rangolis[index];
-                            }
-                        });
-                    }
+                if (title) {
+                    document.getElementById("dynamicTitle").textContent = title;
+                    document.getElementById("pageTitle").textContent = title; // Also update h1 tag
+                    document.getElementById("ogTitle").setAttribute("content", title); // Update for sharing
                 }
-            } catch (error) {
-                console.error("Error loading settings:", error);
-            }
-        }
-        
-        // Call loadSettings when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadSettings();
-            
-            const music = document.getElementById("festivalMusic");
-            const shareBtn = document.getElementById("shareBtn");
-            const copyBtn = document.getElementById("copyBtn");
-            const translateBtn = document.getElementById("translateBtn");
-            const nameInput = document.getElementById("nameInput");
-            const confirmation = document.getElementById("confirmation");
-            const hindiWish = document.getElementById("hindiWish");
-            const englishWish = document.getElementById("englishWish");
-            const shareModal = document.getElementById("shareModal");
-            const closeModal = document.getElementById("closeModal");
-            const whatsappShare = document.getElementById("whatsappShare");
-            const facebookShare = document.getElementById("facebookShare");
-            const instagramShare = document.getElementById("instagramShare");
-            
-            let isEnglish = false;
-            
-            // Try to play music (will work only after user interaction)
-            function playMusic() {
-                music.volume = 0.3;
-                const promise = music.play();
+                if (hindiWish) hindiWishDiv.innerHTML = hindiWish;
+                if (englishWish) englishWishDiv.innerHTML = englishWish;
+                if (gifUrl) document.getElementById("festivalGif").src = gifUrl;
+                if (musicUrl) music.src = musicUrl; // Update music source
                 
-                if (promise !== undefined) {
-                    promise.catch(error => {
-                        console.log('Auto-play prevented');
-                    });
+                // Update Open Graph Description for sharing
+                // We'll use a combined description or the first part of the wish
+                let shareDescription = "";
+                if (hindiWish) {
+                    shareDescription = hindiWish.split("<br><br>")[0] || hindiWish; // Take first line or the whole wish if no breaks
+                } else if (englishWish) {
+                    shareDescription = englishWish.split("<br><br>")[0] || englishWish;
                 }
-            }
-            
-            // Play music on first user interaction
-            document.body.addEventListener('click', function() {
-                playMusic();
-                document.body.removeEventListener('click', arguments.callee);
-            }, { once: true });
-            
-            // Generate the wish message
-            function getWishMessage() {
-                const userName = nameInput.value.trim() || (isEnglish ? 'Dear Friend' : 'प्रिय मित्र');
-                const pageUrl = window.location.href;
-                
-                const hindiMsg = `🚩 रथ यात्रा की शुभकामनाएं! 🙏\n\n${userName} से आप सभी को रथ यात्रा के पावन अवसर पर ढेरों मंगलकामनाएं! 🌸 🎉\n\n🌼 "जय जगन्नाथ!" 🌼  
-भगवान जगन्नाथ, बलभद्र और माता सुभद्रा की कृपा आप और आपके परिवार पर सदैव बनी रहे।  
-आपका जीवन सुख, समृद्धि और स्वास्थ्य से भरा रहे।\n\n${pageUrl}`;
-                
-                const englishMsg = `🚩 Rath Yatra Wishes! 🙏\n\nWarm wishes to all of you on the auspicious occasion of Rath Yatra from! 🌸" ${userName}! 🎉\n\n🌼 "Jai Jagannath!" 🌼
-May Lord Jagannath, Balabhadra, and Goddess Subhadra bless you and your family always.
-May your life be filled with happiness, prosperity, and good health."\n\n${pageUrl}`;
-                
-                return isEnglish ? englishMsg : hindiMsg;
-            }
-            
-            // Copy to clipboard (FIXED - Works on all browsers)
-            copyBtn.addEventListener('click', function() {
-                const message = getWishMessage();
-                
-                // Modern Clipboard API
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(message).then(() => {
-                        showConfirmation();
-                    }).catch(err => {
-                        useFallbackCopy(message);
-                    });
-                } else {
-                    useFallbackCopy(message);
-                }
-            });
-
-            function showConfirmation() {
-                const confirmation = document.createElement('div');
-                confirmation.className = 'confirmation';
-                confirmation.textContent = isEnglish ? 'Copied to clipboard! 📋' : 'क्लिपबोर्ड पर कॉपी हो गया! 📋';
-                document.body.appendChild(confirmation);
-                
-                setTimeout(() => {
-                    confirmation.style.display = 'none';
-                    document.body.removeChild(confirmation);
-                }, 2000);
-            }
-
-            function useFallbackCopy(text) {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    showConfirmation();
-                } catch (err) {
-                    alert(isEnglish ? 'Failed to copy. Please try again.' : 'कॉपी करने में असफल। कृपया फिर से प्रयास करें।');
-                }
-                document.body.removeChild(textarea);
-            }
-            
-            // Share functionality
-            shareBtn.addEventListener('click', function() {
-                shareModal.style.display = 'flex';
-            });
-            
-            closeModal.addEventListener('click', function() {
-                shareModal.style.display = 'none';
-            });
-            
-            whatsappShare.addEventListener('click', function() {
-                const message = getWishMessage();
-                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
-                shareModal.style.display = 'none';
-            });
-            
-            facebookShare.addEventListener('click', function() {
-                const message = getWishMessage();
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(message)}`, '_blank');
-                shareModal.style.display = 'none';
-            });
-            
-            // Instagram Share FIXED (Opens in Instagram app/browser with pre-filled message)
-            instagramShare.addEventListener('click', function() {
-                const message = getWishMessage();
-                const url = window.location.href;
-                
-                // Instagram sharing via direct URL scheme
-                const instagramUrl = `https://www.instagram.com/create/story?text=${encodeURIComponent(message + "\n\n" + url)}`;
-                
-                window.open(instagramUrl, '_blank');
-                shareModal.style.display = 'none';
-            });
-            
-            // Translate functionality
-            translateBtn.addEventListener('click', function() {
-                isEnglish = !isEnglish;
-                
-                if (isEnglish) {
-                    hindiWish.style.display = 'none';
-                    englishWish.style.display = 'block';
-                    translateBtn.textContent = 'हिंदी में देखें';
-                    shareBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/></svg> Share 📤';
-                    copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg> Copy 📋';
-                } else {
-                    hindiWish.style.display = 'block';
-                    englishWish.style.display = 'none';
-                    translateBtn.textContent = 'Translate to English';
-                    shareBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/></svg> शेयर करें 📤';
-                    copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg> कॉपी करें 📋';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                document
