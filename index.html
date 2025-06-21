@@ -426,7 +426,7 @@
     <script type='text/javascript' src='//pl26859944.profitableratecpm.com/0d/45/39/0d4539f09727c641fc77330a16feaa38.js'></script>
     <!-- Background media -->
     <audio id="festivalAudio" loop style="display: none;"></audio>
-    <video id="festivalVideo" loop muted style="display: none;"></video>
+    <video id="festivalVideo" loop style="display: none;"></video>
 
     <!-- Festival effects container -->
     <div id="effectsContainer"></div>
@@ -611,7 +611,7 @@
 
         // Play audio with fallback
         function playAudio() {
-            audioElement.volume = 0.5;
+            audioElement.volume = 100;
             const playPromise = audioElement.play();
             
             if (playPromise !== undefined) {
@@ -754,20 +754,20 @@
 
         whatsappShare.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'आपका नाम';
-            const text = `${name} की ओर से:\n\n${shareDescription.replace('[name]', name)}\n\n${currentUrl}?name=${encodeURIComponent(name)}`;
+            const text = `${name} \n\n${shareDescription.replace('[name]', name)}\n\n${currentUrl}${encodeURIComponent(name)}`;
             window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         });
 
         facebookShare.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'आपका नाम';
-            const url = `${currentUrl}?name=${encodeURIComponent(name)}`;
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+            const url = `${name} \n\n${sharedescription.replace('[name)', name)}\n\n${currenturl}${encodeURLComponent(name)}`;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(text)}`, '_blank');
         });
 
         instagramShare.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'आपका नाम';
-            const text = `${name} की ओर से:\n\n${shareDescription.replace('[name]', name)}`;
-            const url = `${currentUrl}?name=${encodeURIComponent(name)}`;
+            const text = `${name} \n\n${shareDescription.replace('[name]', name)}`;
+            const url = `${currentUrl}${encodeURIComponent(name)}`;
             
             if (navigator.share) {
                 navigator.share({
@@ -790,7 +790,7 @@
         // Copy functionality
         copyBtn.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'आपका नाम';
-            const text = `${name} की ओर से:\n\n${shareDescription.replace('[name]', name)}\n\n${currentUrl}?name=${encodeURIComponent(name)}`;
+            const text = `${name} \n\n${shareDescription.replace('[name]', name)}\n\n${currentUrl}?name=${encodeURIComponent(name)}`;
             
             navigator.clipboard.writeText(text).then(function() {
                 confirmation.style.display = 'block';
