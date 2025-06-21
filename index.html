@@ -612,7 +612,7 @@
                 }
                 if (hindiWish) hindiWishDiv.innerHTML = hindiWish;
                 if (englishWish) englishWishDiv.innerHTML = englishWish;
-                if (gifData) festivalGif.src = gifData;
+                if (gifData) festivalGif/jpg.src = gifData/jpgData;
                 if (musicData) {
                     musicSource.src = musicData;
                     music.load();
@@ -706,7 +706,7 @@
         // Copy functionality
         copyBtn.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'आपका नाम';
-            const text = shareDescription.replace('[name]', name);
+            const text = shareDescription.replace('[name]', url);
             const url = `${currentUrl}?name=${encodeURIComponent(name)}`;
             
             navigator.clipboard.writeText(`${text}\n\n${url}`).then(function() {
