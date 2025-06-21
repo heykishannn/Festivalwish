@@ -387,6 +387,7 @@
     </style>
 </head>
 <body>
+    <script type='text/javascript' src='//pl26859944.profitableratecpm.com/0d/45/39/0d4539f09727c641fc77330a16feaa38.js'></script>
     <!-- Background music -->
     <audio id="festivalMusic" loop>
         <source src="festival.mp3" type="audio/mpeg">
@@ -400,7 +401,7 @@
             <img id="festivalGif" src="festival.gif" alt="Festival Celebration">
         </div>
         
-        <h1 id="pageTitle">हार्दिक शुभकामनाएं 🙏🎉</h1>
+        <h1 id="pageTitle">Title</h1>
         
         <div class="wish-container">
             <div class="wish-text" id="hindiWish">
@@ -421,7 +422,7 @@
         <div class="buttons-container">
             <button class="action-btn share-btn" id="shareBtn">
                 <i class="fab fa-share-alt"></i>
-                शेयर करें
+               ➤ शेयर करें
             </button>
             <button class="action-btn copy-btn" id="copyBtn">
                 <i class="far fa-copy"></i>
@@ -431,7 +432,16 @@
 
         <!-- Mid-page ad placeholder -->
         <div class="mid-ad">
-            Advertisement - 300x50
+            <script type="text/javascript">
+	atOptions = {
+		'key' : '8a596a14d2ea184cd9b6372e267b931c',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/8a596a14d2ea184cd9b6372e267b931c/invoke.js"></script>
         </div>
    
         <div class="confirmation" id="confirmation">लिंक कॉपी हो गया!</div>
@@ -440,7 +450,16 @@
     <!-- Fixed Footer Ad -->
     <div class="footer-ad">
         <div class="ad-container">
-            Advertisement - 300x50
+            <script type="text/javascript">
+	atOptions = {
+		'key' : 'f3980c7d80f3803dbaf4228f02da605b',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/f3980c7d80f3803dbaf4228f02da605b/invoke.js"></script>
         </div>
     </div>
 
@@ -623,7 +642,7 @@
         // Share functionality
         shareBtn.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'एक मित्र';
-            let description = `${name} की ओर से ${shareDescription.replace('[name]', '')}`;
+            let description = `${name} ${shareDescription.replace('[name]', '')}`;
             ogTitle.setAttribute("content", dynamicTitle.textContent);
             ogDescription.setAttribute("content", description);
             shareModal.style.display = 'flex';
@@ -632,7 +651,7 @@
         // Copy functionality
         copyBtn.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'एक मित्र';
-            let description = `${name} की ओर से ${shareDescription.replace('[name]', '')}`;
+            let description = `${name} ${shareDescription.replace('[name]', '')}`;
             const shareText = `${description}\n\n${currentUrl}`;
             
             navigator.clipboard.writeText(shareText).then(() => {
@@ -653,14 +672,14 @@
         // Share options
         whatsappShare.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'एक मित्र';
-            let description = `${name} की ओर से ${shareDescription.replace('[name]', '')}`;
+            let description = `${name} ${shareDescription.replace('[name]', '')}`;
             const shareText = `${description}\n\n${currentUrl}`;
             window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
         });
 
         facebookShare.addEventListener('click', function() {
             const name = nameInput.value.trim() || 'एक मित्र';
-            let description = `${name} की ओर से ${shareDescription.replace('[name]', '')}`;
+            let description = `${name} ${shareDescription.replace('[name]', '')}`;
             ogTitle.setAttribute("content", dynamicTitle.textContent);
             ogDescription.setAttribute("content", description);
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank');
